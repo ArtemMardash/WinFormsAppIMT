@@ -12,23 +12,25 @@ namespace WinFormsAppIMT
 {
     public partial class Form2 : Form
     {
-        public Form2()
+        public Form2(string recomendations)
         {
             InitializeComponent();
+            label1.Text = recomendations;
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
             //MessageBox.Show("Вы запустили калькулятор ИМТ ", "Message", MessageBoxButtons.OK);
         }
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Закрыть приложение?", "Message", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No)
-                e.Cancel = true;
-            else
-            {
-                e.Cancel = false;
-            }
+            Form ifrm = Application.OpenForms[0];
+            ifrm.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
